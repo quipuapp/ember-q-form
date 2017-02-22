@@ -1,7 +1,3 @@
-{{#if label}}
-  <label class="{{labelClasses}}" for={{inputId}}>{{label}}</label>
-{{/if}}
-
 <input
   id={{inputId}}
   type="{{unbound type}}"
@@ -12,8 +8,11 @@
   disabled={{disabled}}
   maxlength={{maxlength}}
   placeholder={{placeholder}}
-  required={{required}}
->
+  required={{required}}>
+
+{{#if label}}
+  <label class="{{labelClasses}}" for={{inputId}}>{{label}}</label>
+{{/if}}
 
 {{#if showErrors}}
   {{#if (get data.displayErrors field)}}

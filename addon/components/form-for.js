@@ -17,7 +17,7 @@ const Form = Ember.Component.extend({
     if (this.get("data.hasDisplayErrors")) {
       return;
     } else {
-      this.onsubmit();
+      this["on-submit"]();
     }
   }
 });

@@ -1,0 +1,41 @@
+<select
+  id="inputId"
+  onchange={{action updateSelected value="target.value"}}
+  onblur={{action (mut showErrors) true}}
+  disabled={{disabled}}
+  required={{required}}>
+
+  {{#if prompt}}
+    <option
+      value=""
+      disabled={{if required true}}
+      selected={{unless selectedOption true}}>
+
+      {{prompt}}
+    </option>
+  {{/if}}
+
+  {{#each options as |option|}}
+    <option
+      value={{if valuePath (get option valuePath) option}}
+      selected={{ember-quipu-forms-equal option selectedOption}}>
+
+      {{if labelPath (get option labelPath) option}}
+
+    </option>
+  {{/each}}
+</select>
+
+{{#if label}}
+  <label class="{{labelClasses}}" for={{inputId}}>{{label}}</label>
+{{/if}}
+
+{{#if showErrors}}
+  {{#if (get data.displayErrors field)}}
+    <div class="errors">
+      {{#each (get data.displayErrors field) as |error|}}
+        <span class="error">{{error}}</span>
+      {{/each}}
+    </div>
+  {{/if}}
+{{/if}}

@@ -3,6 +3,7 @@ models:
     contact:
       name: "nombre"
       email: "email"
+      category: "categoria"
 
 errors:
   blank: "no puede estar en blanco"

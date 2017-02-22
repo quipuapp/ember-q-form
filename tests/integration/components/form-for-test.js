@@ -14,17 +14,17 @@ test("it renders", function(assert) {
   assert.ok(find("form"), "it renders a form");
 });
 
-test("on submit executes 'onsubmit'", function(assert) {
+test("on submit executes 'on-submit'", function(assert) {
   assert.expect(1);
 
-  const submit = function() {
+  const save = function() {
     assert.ok(1, "external function executed");
   };
 
-  this.set("submit", submit);
+  this.set("save", save);
 
   this.render(hbs`
-    {{#form-for onsubmit=submit}}
+    {{#form-for on-submit=(action save)}}
     {{/form-for}}
   `);
 

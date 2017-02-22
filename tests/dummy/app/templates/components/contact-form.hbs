@@ -1,12 +1,27 @@
-{{#form-for data as |form|}}
+{{#form-for data on-submit=(action save) as |form|}}
   <button type="submit">Vengaaaa!!</button>
   <br>
   <br>
   {{form.input-for "name"
     placeholder="Your name"
-    autofocus=true}}
+    autofocus=true}} (with presence validation)
+  <br>
   <br>
   {{form.input-for "email"
     type="email"
-    placeholder="Your email"}}
+    placeholder="Your email"}} (with format validation)
+  <br>
+  <br>
+  {{form.select-for "animal"
+    options=selectOptions
+    label="animal"
+    prompt="no animal"}} (a select with an array of string as options)
+  <br>
+  <br>
+  {{form.select-for "category"
+    options=categories
+    prompt="Choose a category"
+    labelPath="name"
+    required=true}} (a select with a collection of ember-data models,
+                     with `required=true`, and presence validation)
 {{/form-for}}
