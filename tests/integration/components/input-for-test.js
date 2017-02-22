@@ -33,7 +33,7 @@ test("it shows errors on blur", function(assert) {
   this.set("something", something);
 
   this.render(hbs`
-    {{input-for data=something field="name"}}
+    {{input-for "name" data=something}}
   `);
 
   assert.notOk(
@@ -63,11 +63,34 @@ test("it builds the label from intl translations", function(assert) {
   this.set("something", something);
 
   this.render(hbs`
-    {{input-for data=something field="name"}}
+    {{input-for "name" data=something}}
   `);
 
   assert.equal(
     this.$("label").text(),
-    "nombre"
+    "nombre",
+    "has a translated label"
+  );
+});
+
+test("it renders without label if label is falsy", function(assert) {
+  const something = {
+    content: {
+      constructor: {
+        modelName: "contact"
+      }
+    }
+  };
+
+  this.set("something", something);
+
+  this.render(hbs`
+    {{input-for "name" data=something label=false}}
+  `);
+
+  assert.equal(
+    this.$("label").length,
+    0,
+    "has no label"
   );
 });

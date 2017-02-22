@@ -54,7 +54,7 @@ test("on submit does not execute 'onsubmit' if object has errors", function(asse
   assert.equal(this.get("foo"), "bar", "'on-submit' does not get executed");
 });
 
-test("it yields a hash with q-input component", function(assert) {
+test("it yields a hash with input-for component", function(assert) {
   assert.expect(2);
 
   const something = {
@@ -65,7 +65,7 @@ test("it yields a hash with q-input component", function(assert) {
 
   this.render(hbs`
     {{#form-for data as |form|}}
-      {{form.input field="name"}}
+      {{form.input-for "name"}}
     {{/form-for}}
   `);
 

@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import layout from '../templates/components/input-for';
 
-export default Ember.Component.extend({
+const Input = Ember.Component.extend({
   layout,
   intl: Ember.inject.service(),
 
@@ -41,3 +41,9 @@ export default Ember.Component.extend({
     }
   })
 });
+
+Input.reopenClass({
+  positionalParams: ["field"]
+});
+
+export default Input;

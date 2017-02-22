@@ -1,4 +1,6 @@
-<label for={{inputId}}>{{label}}</label>
+{{#if label}}
+  <label class="{{labelClasses}}" for={{inputId}}>{{label}}</label>
+{{/if}}
 
 <input
   id={{inputId}}
