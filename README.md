@@ -1,11 +1,11 @@
-# ember-q-form
+# ember-quipu-forms
 
 This README outlines the details of collaborating on this Ember addon.
 
 ## Installation
 
 * `git clone <repository-url>` this repository
-* `cd ember-q-form`
+* `cd ember-quipu-forms`
 * `npm install`
 * `bower install`
 

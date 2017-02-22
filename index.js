@@ -2,5 +2,5 @@
 'use strict';
 
 module.exports = {
-  name: 'ember-q-form'
+  name: 'ember-quipu-forms'
 };

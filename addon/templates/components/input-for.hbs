@@ -1,0 +1,24 @@
+<label for={{inputId}}>{{label}}</label>
+
+<input
+  id={{inputId}}
+  type="{{unbound type}}"
+  value={{unbound (get data field)}}
+  oninput={{action (mut (get data field)) value="target.value"}}
+  onblur={{action (mut showErrors) true}}
+  autofocus={{autofocus}}
+  disabled={{disabled}}
+  maxlength={{maxlength}}
+  placeholder={{placeholder}}
+  required={{required}}
+>
+
+{{#if showErrors}}
+  {{#if (get data.displayErrors field)}}
+    <div class="errors">
+      {{#each (get data.displayErrors field) as |error|}}
+        <span class="error">{{error}}</span>
+      {{/each}}
+    </div>
+  {{/if}}
+{{/if}}

@@ -1,0 +1,16 @@
+{{#form-for data as |form|}}
+  <button type="submit">Vengaaaa!!</button>
+  <br>
+  <br>
+  {{form.input
+    field="name"
+    placeholder="Your name"
+    autofocus=true
+  }}
+  <br>
+  {{form.input
+    field="email"
+    type="email"
+    placeholder="Your email"
+  }}
+{{/form-for}}

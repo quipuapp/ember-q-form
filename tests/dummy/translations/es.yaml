@@ -1,0 +1,9 @@
+models:
+  attributes:
+    contact:
+      name: "nombre"
+      email: "email"
+
+errors:
+  blank: "no puede estar en blanco"
+  email: "tiene que ser una dirección de email válida"
