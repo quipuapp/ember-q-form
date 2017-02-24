@@ -5,7 +5,7 @@ import InputFor from './input-for';
 export default InputFor.extend({
   layout,
 
-  init() {
+  didReceiveAttrs() {
     this._super(...arguments);
 
     Ember.assert(
@@ -13,14 +13,7 @@ export default InputFor.extend({
       this.get("options")
     );
 
-    if (this.get("hasBasicOptions")) {
-      this.set("selectedValue", this.get(`data.${this.get("field")}`));
-    } else {
-      this.set(
-        "selectedValue",
-        this.get(`data.${this.get("field")}.${this.get("valuePath")}`)
-      );
-    }
+    this.set("selectedOption", Ember.computed.readOnly(`data.${this.get("field")}`));
   },
 
   hasBasicOptions: Ember.computed("options", function() {
@@ -33,18 +26,7 @@ export default InputFor.extend({
     }
   }),
 
-  selectedOption: Ember.computed("selectedValue", function() {
-    if (this.get("hasBasicOptions")) {
-      return this.get("selectedValue");
-    } else {
-      return Ember.A(this.get("options")).
-        findBy(this.get("valuePath"), this.get("selectedValue"));
-    }
-  }),
-
   updateSelected(value) {
-    this.set("selectedValue", value);
-
     if (this.get("hasBasicOptions")) {
       Ember.set(this.get("data"), this.get("field"), value);
     } else {
