@@ -4,6 +4,7 @@ models:
       name: "nombre"
       email: "email"
       category: "categoria"
+      receive_newsletter: "Quiero recibir la newletter"
 
 errors:
   blank: "no puede estar en blanco"

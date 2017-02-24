@@ -17,7 +17,8 @@ export default Ember.Route.extend({
 
     const contact = this.store.createRecord("contact", {
       animal: "jirafa",
-      category: categories[1]
+      category: categories[1],
+      receiveNewsletter: true
     });
 
     return {

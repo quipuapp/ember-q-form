@@ -7,7 +7,7 @@ const Input = Ember.Component.extend({
 
   showErrors: false,
 
-  init() {
+  didReceiveAttrs() {
     this._super(...arguments);
 
     if (!this.get("type")) {

@@ -1,0 +1,23 @@
+<input
+  type="checkbox"
+  id={{inputId}}
+  checked={{get data field}}
+  oninput={{action toggleField}}
+  onblur={{action (mut showErrors) true}}
+  autofocus={{autofocus}}
+  disabled={{disabled}}
+  required={{required}}>
+
+{{#if label}}
+  <label class="{{labelClasses}}" for={{inputId}}>{{label}}</label>
+{{/if}}
+
+{{#if showErrors}}
+  {{#if (get data.displayErrors field)}}
+    <div class="errors">
+      {{#each (get data.displayErrors field) as |error|}}
+        <span class="error">{{error}}</span>
+      {{/each}}
+    </div>
+  {{/if}}
+{{/if}}
