@@ -1,7 +1,7 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
 
-moduleForComponent('select-for', 'Integration | Component | select for', {
+moduleForComponent('select-for', 'Integration | Component | select-for', {
   integration: true,
   setup() {
     this.set("options", ["cat", "dog", "snake", "tapir"]);
