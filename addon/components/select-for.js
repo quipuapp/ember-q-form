@@ -9,7 +9,7 @@ export default InputFor.extend({
     this._super(...arguments);
 
     Ember.assert(
-      "Must provide an options attribute when using `select-for`",
+      `Must provide an options attribute when using \`${this.toString().match(/component:.[^`:]*/)}\``,
       this.get("options")
     );
 
@@ -37,7 +37,7 @@ export default InputFor.extend({
     if (this.get("hasBasicOptions")) {
       return this.get("selectedValue");
     } else {
-      Ember.A(this.get("options")).
+      return Ember.A(this.get("options")).
         findBy(this.get("valuePath"), this.get("selectedValue"));
     }
   }),

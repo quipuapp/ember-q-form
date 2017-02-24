@@ -25,7 +25,7 @@ test("it throws an error if options are not provided", function(assert) {
     () => {
       this.render(hbs`{{select-for "contact"}}`);
     },
-    /Must provide an options attribute when using `select-for`/,
+    /Must provide an options attribute when using `component:select-for`/,
     "raised error"
   );
 });
@@ -73,7 +73,7 @@ test("with complex types works", function(assert) {
   this.set("options", options);
 
   this.set("something", {
-    favoriteSinger: options[0]
+    favoriteSinger: options[2]
   });
 
   this.render(hbs`
@@ -83,7 +83,7 @@ test("with complex types works", function(assert) {
   `);
 
   assert.equal(this.$("option").length, 3, "it renders the options");
-  assert.equal(this.$("option:selected").val(), "1",
+  assert.equal(this.$("option:selected").val(), "3",
               "it has the correct option selected");
 
   this.$("select").val("3").trigger("change");

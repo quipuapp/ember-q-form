@@ -20,8 +20,14 @@
   <br>
   {{form.select-for "category"
     options=categories
-    prompt="Choose a category"
     labelPath="name"
+    prompt="Choose a category"
     required=true}} (a select with a collection of ember-data models,
                      with `required=true`, and presence validation)
+  <br>
+  <br>
+  {{form.radio-group-for "category"
+    options=categories
+    labelPath="name"}} (a radio-button group with a collection of
+                        ember-data models, and presence validation)
 {{/form-for}}

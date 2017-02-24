@@ -1,0 +1,33 @@
+<radiogroup
+  id="inputId"
+  onchange={{action updateSelected value="target.value"}}
+  onblur={{action (mut showErrors) true}}
+  disabled={{disabled}}
+  required={{required}}>
+
+  {{#each options as |option index|}}
+    <input
+      type="radio"
+      id={{concat (concat elementId field) (concat "-radio-" index)}}
+      name={{concat (concat elementId field) "-radios"}}
+      value={{if valuePath (get option valuePath) option}}
+      checked={{ember-quipu-forms-equal option selectedOption}}>
+
+    <label
+      class="{{labelClasses}}"
+      for={{concat (concat elementId field) (concat "-radio-" index)}}>
+      {{if labelPath (get option labelPath) option}}
+    </label>
+  {{/each}}
+</radiogroup>
+
+
+{{#if showErrors}}
+  {{#if (get data.displayErrors field)}}
+    <div class="errors">
+      {{#each (get data.displayErrors field) as |error|}}
+        <span class="error">{{error}}</span>
+      {{/each}}
+    </div>
+  {{/if}}
+{{/if}}
