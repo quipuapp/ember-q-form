@@ -1,8 +1,8 @@
 import Ember from 'ember';
 import layout from '../templates/components/select-for';
-import InputFor from './input-for';
+import FormControl from './form-control';
 
-export default InputFor.extend({
+export default FormControl.extend({
   layout,
 
   didReceiveAttrs() {

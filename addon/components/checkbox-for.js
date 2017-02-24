@@ -1,7 +1,7 @@
-import InputFor from './input-for';
 import layout from '../templates/components/checkbox-for';
+import FormControl from './form-control';
 
-export default InputFor.extend({
+export default FormControl.extend({
   layout,
 
   toggleField() {
