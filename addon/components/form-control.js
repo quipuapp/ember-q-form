@@ -5,6 +5,8 @@ const FormControl = Ember.Component.extend({
 
   showErrors: false,
 
+  classNames: "form-field",
+
   inputId: Ember.computed("elementId", {
     get() {
       return `${this.get("elementId")}-input`;
