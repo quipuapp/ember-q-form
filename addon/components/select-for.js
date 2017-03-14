@@ -5,6 +5,8 @@ import FormControl from './form-control';
 export default FormControl.extend({
   layout,
 
+  classNames: "select-field",
+
   didReceiveAttrs() {
     this._super(...arguments);
 
@@ -13,7 +15,7 @@ export default FormControl.extend({
       this.get("options")
     );
 
-    this.set("selectedOption", Ember.computed.readOnly(`data.${this.get("field")}`));
+    this.selectedOption = Ember.computed.readOnly(`data.${this.get("field")}`);
   },
 
   hasBasicOptions: Ember.computed("options", function() {
