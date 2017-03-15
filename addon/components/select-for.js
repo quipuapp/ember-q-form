@@ -15,7 +15,18 @@ export default FormControl.extend({
       this.get("options")
     );
 
-    this.selectedOption = Ember.computed.readOnly(`data.${this.get("field")}`);
+    if (this.get("hasBasicOptions")) {
+      this.selectedOption =
+        Ember.computed.readOnly(`data.${this.get("field")}`);
+    } else {
+      const field     = this.get("field"),
+            valuePath = this.get("valuePath");
+
+      this.selectedOption = Ember.computed(`data.${field}`, "options", "field", function() {
+        return this.get("options").
+          findBy(valuePath, this.get(`data.${field}.${valuePath}`));
+      });
+    }
   },
 
   hasBasicOptions: Ember.computed("options", function() {

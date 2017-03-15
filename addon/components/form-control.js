@@ -15,18 +15,22 @@ const FormControl = Ember.Component.extend({
 
   label: Ember.computed("data", "field", {
     get() {
-      if (!this.get("data.content.constructor.modelName")) {
+      let modelName =
+        this.get("data.content.constructor.modelName") ||
+        this.get("data.constructor.modelName");
+
+      if (!modelName) {
         return;
       }
 
-      if (!this.get("field")) {
+      let fieldName = this.get("field");
+
+      if (!fieldName) {
         return;
       }
-      const modelName = Ember.String.underscore(
-        this.get("data.content.constructor.modelName"));
 
-      const fieldName = Ember.String.underscore(
-        this.get("field"));
+      modelName = Ember.String.underscore(modelName);
+      fieldName = Ember.String.underscore(fieldName);
 
       return this.get("intl").t(
         `models.attributes.${modelName}.${fieldName}`);
