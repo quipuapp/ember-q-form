@@ -5,6 +5,7 @@ form {
 
 .form-field {
   padding: 4px;
+  margin-bottom: 1em;
   outline: 1px solid green;
 }
 

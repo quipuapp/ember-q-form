@@ -8,22 +8,26 @@ export default Ember.Route.extend({
   },
 
   model() {
-    const store = this.get("store");
     const categories = [
-      store.createRecord("category", { id: "1", name: "Friends" }),
-      store.createRecord("category", { id: "2", name: "Family" }),
-      store.createRecord("category", { id: "3", name: "Work" })
+      this.store.createRecord("category", { id: "1", name: "Friends" }),
+      this.store.createRecord("category", { id: "2", name: "Family" }),
+      this.store.createRecord("category", { id: "3", name: "Work" })
     ];
+
+    this.set("categories", categories);
 
     const contact = this.store.createRecord("contact", {
       animal: "jirafa",
-      category: categories[1],
+      category: categories[2],
       receiveNewsletter: true
     });
 
-    return {
-      contact:    contact,
-      categories: categories
-    };
+    return contact;
+  },
+
+  setupController(controller) {
+    this._super(...arguments);
+
+    controller.set("categories", this.get("categories"));
   }
 });

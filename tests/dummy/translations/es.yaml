@@ -5,6 +5,11 @@ models:
       email: "email"
       category: "categoria"
       receive_newsletter: "Quiero recibir la newletter"
+    address:
+      street: "calle"
+      zip_code: "código postal"
+      city: "población"
+      country: "país"
 
 errors:
   blank: "no puede estar en blanco"
