@@ -18,18 +18,6 @@ test('it renders', function(assert) {
   assert.ok(this.$("select").length, 'it renders a select element');
 });
 
-test("it throws an error if options are not provided", function(assert) {
-  assert.expect(1);
-
-  assert.throws(
-    () => {
-      this.render(hbs`{{select-for "contact"}}`);
-    },
-    /Must provide an options attribute when using `component:select-for`/,
-    "raised error"
-  );
-});
-
 test("with basic types works", function(assert) {
   assert.expect(3);
 
