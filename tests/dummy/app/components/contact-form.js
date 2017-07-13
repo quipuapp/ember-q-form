@@ -1,3 +1,4 @@
+/* eslint no-console: "off" */
 import Ember from 'ember';
 import formBufferProperty from 'ember-validated-form-buffer';
 import Validations from 'dummy/validations/contact-form-validations';
@@ -45,7 +46,7 @@ export default Ember.Component.extend({
     });
 
     if (addressBuffersHaveErrors) {
-      console.log('There are errors on addressess.');
+      console.debug('There are errors on addressess.');
       return;
     }
 

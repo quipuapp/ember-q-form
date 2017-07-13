@@ -15,7 +15,7 @@ module.exports = function(/* env */) {
     * @type {Array?}
     * @default "null"
     */
-    locales: ["es", "en"],
+    locales: null,
 
     /**
     * baseLocale is used to determine if translation keys are missing from other locales.
@@ -26,7 +26,7 @@ module.exports = function(/* env */) {
     * @type {String?}
     * @default "null"
     */
-    baseLocale: "es",
+    baseLocale: null,
 
     /**
     * autoPolyfill, when true will automatically inject the IntlJS polyfill
@@ -36,7 +36,7 @@ module.exports = function(/* env */) {
     * @type {Boolean}
     * @default "false"
     */
-    autoPolyfill: true,
+    autoPolyfill: false,
 
     /**
     * disablePolyfill prevents the polyfill from being bundled in the asset folder of the build
@@ -69,6 +69,6 @@ module.exports = function(/* env */) {
     * @type {String}
     * @default "translations"
      */
-    inputPath: 'tests/dummy/translations'
+    inputPath: 'translations'
   };
 };
