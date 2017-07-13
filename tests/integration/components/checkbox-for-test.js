@@ -19,12 +19,12 @@ test('works', function(assert) {
   this.render(hbs`{{checkbox-for data=something field="foo"}}`);
 
   this.$("label").click();
-  this.$("input").trigger("input");
+  this.$("input").trigger("change");
 
   assert.ok(this.get("something.foo"));
 
-  this.$("input").click();
-  this.$("input").trigger("input");
+  this.$("label").click();
+  this.$("input").trigger("change");
 
   assert.notOk(this.get("something.foo"));
 });
