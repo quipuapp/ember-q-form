@@ -15,16 +15,6 @@
 {{/if}}
 
 {{#if showErrors}}
-  {{#if (get data.displayErrors field)}}
-    <div class="errors">
-      {{#each (get data.displayErrors field) as |error|}}
-        <span class="error">{{error}}</span>
-      {{/each}}
-    </div>
-  {{/if}}
-{{/if}}
-{{showErrors}}
-{{#if showErrors}}
   {{#if (get (get data.validations.attrs field) 'messages') }}
     <div class="errors">
       {{#each (get (get data.validations.attrs field) 'messages') as |errorMessage|}}

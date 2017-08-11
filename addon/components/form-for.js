@@ -14,10 +14,10 @@ const Form = Ember.Component.extend({
 
     this.set("showErrors", true);
 
-    if (this.get("data.hasDisplayErrors")) {
+    if (this.get("data.validations.errors.length")) {
       return;
     } else {
-      this["on-submit"]();
+      this.onSubmit();
     }
   }
 });

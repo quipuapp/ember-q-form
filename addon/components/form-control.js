@@ -7,6 +7,8 @@ const FormControl = Ember.Component.extend({
 
   classNames: "form-field",
 
+  classNameBindings: ['hasErrors:has-errors'],
+
   inputId: Ember.computed("elementId", {
     get() {
       return `${this.get("elementId")}-input`;
@@ -35,7 +37,14 @@ const FormControl = Ember.Component.extend({
       return this.get("intl").t(
         `models.attributes.${modelName}.${fieldName}`);
     }
-  })
+  }),
+
+  init() {
+    this._super(...arguments);
+
+    this.hasErrors = Ember.computed.notEmpty(
+      `data.validations.attrs.${this.get('field')}.errors`);
+  }
 });
 
 FormControl.reopenClass({
