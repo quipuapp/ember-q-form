@@ -1,7 +1,7 @@
 <input
   id={{inputId}}
   type="{{unbound type}}"
-  value={{unbound (get data field)}}
+  value={{get data field}}
   oninput={{action (mut (get data field)) value="target.value"}}
   onblur={{action (mut showErrors) true}}
   autofocus={{autofocus}}
@@ -19,6 +19,16 @@
     <div class="errors">
       {{#each (get data.displayErrors field) as |error|}}
         <span class="error">{{error}}</span>
+      {{/each}}
+    </div>
+  {{/if}}
+{{/if}}
+{{showErrors}}
+{{#if showErrors}}
+  {{#if (get (get data.validations.attrs field) 'messages') }}
+    <div class="errors">
+      {{#each (get (get data.validations.attrs field) 'messages') as |errorMessage|}}
+        <span class="error">{{errorMessage}}</span>
       {{/each}}
     </div>
   {{/if}}

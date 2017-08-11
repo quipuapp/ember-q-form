@@ -1,15 +1,19 @@
 models:
   attributes:
-    contact:
-      name: "nombre"
-      email: "email"
-      category: "categoria"
-      receive_newsletter: "Quiero recibir la newletter"
-    address:
+    address: &address_attributes
       street: "calle"
       zip_code: "código postal"
       city: "población"
       country: "país"
+    contact: &contact_attributes
+      name: "nombre"
+      email: "email"
+      category: "categoria"
+      receive_newsletter: "Quiero recibir la newletter"
+    validated_address:
+      <<: *address_attributes
+    validated_contact:
+      <<: *contact_attributes
 
 errors:
   blank: "no puede estar en blanco"
