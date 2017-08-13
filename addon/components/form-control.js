@@ -2,12 +2,18 @@ import Ember from 'ember';
 
 const FormControl = Ember.Component.extend({
   intl: Ember.inject.service(),
+  classNames: "form-field",
+  classNameBindings: ['hasErrors:has-errors', 'focused'],
 
   showErrors: false,
 
-  classNames: "form-field",
+  focusIn() {
+    this.set('focused', true);
+  },
 
-  classNameBindings: ['hasErrors:has-errors'],
+  focusOut() {
+    this.set('focused', false);
+  },
 
   inputId: Ember.computed("elementId", {
     get() {
