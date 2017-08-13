@@ -1,3 +1,7 @@
+{{#if label}}
+  <label class="{{labelClasses}}" for={{inputId}}>{{label}}</label>
+{{/if}}
+
 <input
   id={{inputId}}
   type="{{unbound type}}"
@@ -9,10 +13,6 @@
   maxlength={{maxlength}}
   placeholder={{placeholder}}
   required={{required}}>
-
-{{#if label}}
-  <label class="{{labelClasses}}" for={{inputId}}>{{label}}</label>
-{{/if}}
 
 {{#if showErrors}}
   {{#if (get (get data.validations.attrs field) 'messages') }}

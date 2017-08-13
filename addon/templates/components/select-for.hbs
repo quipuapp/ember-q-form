@@ -1,3 +1,7 @@
+{{#if label}}
+  <label class="{{labelClasses}}" for={{inputId}}>{{label}}</label>
+{{/if}}
+
 <select
   id={{inputId}}
   onchange={{action updateSelected value="target.value"}}
@@ -25,10 +29,6 @@
     </option>
   {{/each}}
 </select>
-
-{{#if label}}
-  <label class="{{labelClasses}}" for={{inputId}}>{{label}}</label>
-{{/if}}
 
 {{#if showErrors}}
   {{#if (get data.displayErrors field)}}
