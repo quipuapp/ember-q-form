@@ -15,6 +15,7 @@ const FormControl = Ember.Component.extend({
     this.set('focused', false);
   },
 
+
   inputId: Ember.computed("elementId", {
     get() {
       return `${this.get("elementId")}-input`;
@@ -48,8 +49,15 @@ const FormControl = Ember.Component.extend({
   init() {
     this._super(...arguments);
 
-    this.hasErrors = Ember.computed.notEmpty(
-      `data.validations.attrs.${this.get('field')}.errors`);
+    const errorsPath = `data.validations.attrs.${this.get('field')}.errors`;
+
+    this.hasErrors = Ember.computed('showErrors', errorsPath, () => {
+      if (!this.get('showErrors')) {
+        return false;
+      }
+
+      return !Ember.isEmpty(this.get(errorsPath));
+    });
   }
 });
 
