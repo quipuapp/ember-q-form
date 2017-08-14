@@ -14,7 +14,7 @@ test("it renders", function(assert) {
   assert.ok(find("form"), "it renders a form");
 });
 
-test("on submit executes 'on-submit'", function(assert) {
+test("on submit executes 'onSubmit'", function(assert) {
   assert.expect(1);
 
   const save = function() {
@@ -24,14 +24,14 @@ test("on submit executes 'on-submit'", function(assert) {
   this.set("save", save);
 
   this.render(hbs`
-    {{#form-for on-submit=(action save)}}
+    {{#form-for onSubmit=(action save)}}
     {{/form-for}}
   `);
 
   this.$("form").submit();
 });
 
-test("on submit does not execute 'onsubmit' if object has errors", function(assert) {
+test("on submit does not execute 'onSubmit' if object has errors", function(assert) {
   assert.expect(1);
 
   this.set("foo", "bar");
@@ -40,18 +40,18 @@ test("on submit does not execute 'onsubmit' if object has errors", function(asse
     this.set("foo", "baz");
   };
 
-  this.set("data", { hasDisplayErrors: true });
+  this.set("data", { validations: { isValid: false } });
 
   this.set("submit", submit);
 
   this.render(hbs`
-    {{#form-for data onsubmit=(action submit)}}
+    {{#form-for data onSubmit=(action submit)}}
     {{/form-for}}
   `);
 
   this.$("form").submit();
 
-  assert.equal(this.get("foo"), "bar", "'on-submit' does not get executed");
+  assert.equal(this.get("foo"), "bar", "'onSubmit' does not get executed");
 });
 
 test("it yields a hash with input-for component", function(assert) {

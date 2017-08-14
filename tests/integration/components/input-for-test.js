@@ -25,8 +25,12 @@ test("it shows errors on blur", function(assert) {
 
   const something = {
     name: "",
-    displayErrors: {
-      name: [error_message]
+    validations: {
+      attrs: {
+        name: {
+          messages: [error_message]
+        }
+      }
     }
   };
 

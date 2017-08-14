@@ -16,6 +16,15 @@ export default Ember.Route.extend({
       receiveNewsletter: true
     });
 
+    const address = this.store.createRecord('address', {
+      street: 'Tolra',
+      zipCode: '08032',
+      city: 'Barcelona',
+      country: 'Meeeeec'
+    });
+
+    contact.get('addressess').addObject(address);
+
     return contact;
   },
 

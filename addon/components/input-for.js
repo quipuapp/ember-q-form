@@ -1,5 +1,8 @@
 import layout from '../templates/components/input-for';
 import FormControl from './form-control';
+import Ember from 'ember';
+
+const { isPresent, computed } = Ember;
 
 export default FormControl.extend({
   layout,
@@ -11,8 +14,8 @@ export default FormControl.extend({
 
     const field = this.get('field');
 
-    this.hasValue = Ember.computed(`data.${field}`, () => {
-      return Ember.isPresent(this.get(`data.${field}`));
+    this.hasValue = computed(`data.${field}`, () => {
+      return isPresent(this.get(`data.${field}`));
     });
   },
 

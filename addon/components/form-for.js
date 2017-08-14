@@ -3,18 +3,18 @@ import layout from '../templates/components/form-for';
 
 const Form = Ember.Component.extend({
   layout,
-  tagName: "form",
+  tagName: 'form',
   novalidate: true,
   showErrors: false,
 
-  attributeBindings: ["novalidate"],
+  attributeBindings: ['novalidate'],
 
   submit(event) {
     event.preventDefault();
 
-    this.set("showErrors", true);
+    this.set('showErrors', true);
 
-    if (this.get("data.validations.errors.length")) {
+    if (this.get('data.validations.isValid') === false) {
       return;
     } else {
       this.onSubmit();
@@ -23,7 +23,7 @@ const Form = Ember.Component.extend({
 });
 
 Form.reopenClass({
-  positionalParams: ["data"]
+  positionalParams: ['data']
 });
 
 export default Form;

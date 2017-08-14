@@ -1,6 +1,7 @@
-{{#form-for data on-submit=(action save) as |form|}}
+{{#form-for model on-submit=(action save) as |form|}}
   <div class="actions">
     <button type="submit">Vengaaaa!!</button>
+    <button type="button" onclick={{action cancel}}>Cancela</button>
   </div>
 
   (with presence validation)
@@ -39,10 +40,10 @@
   <fieldset>
     <legend>Direcciones</legend>
 
-    {{#each addressBuffers as |address index|}}
+    {{#each model.addressess as |address index|}}
       <p class="label">Dirección {{index}}</p>
 
-      {{#form.fields-for address.data as |fields|}}
+      {{#form.fields-for address as |fields|}}
         {{fields.input-for "street"}}
 
         {{fields.input-for "zipCode"}}
@@ -51,6 +52,12 @@
 
         {{fields.input-for "country"}}
       {{/form.fields-for}}
+
+      <button type="button" name="button"
+        onclick={{action removeAddress address}}>
+
+        Remove address
+      </button>
     {{/each}}
   </fieldset>
 {{/form-for}}
