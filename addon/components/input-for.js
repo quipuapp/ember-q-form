@@ -14,7 +14,11 @@ export default FormControl.extend({
 
     const field = this.get('field');
 
-    this.hasValue = computed(`data.${field}`, () => {
+    this.hasValue = computed(`data.${field}`, 'placeholder', () => {
+      if (isPresent(this.get('placeholder'))) {
+        return true;
+      }
+
       return isPresent(this.get(`data.${field}`));
     });
   },
