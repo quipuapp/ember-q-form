@@ -1,9 +1,15 @@
 import Ember from 'ember';
 
-export default Ember.Route.extend({
-  intl: Ember.inject.service(),
+const {
+  get,
+  Route,
+  inject: { service }
+} = Ember;
+
+export default Route.extend({
+  intl: service(),
 
   beforeModel() {
-    this.get("intl").setLocale("es");
+    get(this, 'intl').setLocale('es');
   }
 });

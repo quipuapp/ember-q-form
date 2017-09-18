@@ -1,7 +1,13 @@
 import Ember from 'ember';
 import layout from '../templates/components/form-for';
 
-const Form = Ember.Component.extend({
+const {
+  get,
+  set,
+  Component
+} = Ember;
+
+const Form = Component.extend({
   layout,
   tagName: 'form',
   novalidate: true,
@@ -12,9 +18,9 @@ const Form = Ember.Component.extend({
   submit(event) {
     event.preventDefault();
 
-    this.set('showErrors', true);
+    set(this, 'showErrors', true);
 
-    if (this.get('data.validations.isValid') === false) {
+    if (get(this, 'data.validations.isValid') === false) {
       return;
     } else {
       this.onSubmit();

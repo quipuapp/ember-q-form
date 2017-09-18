@@ -2,52 +2,58 @@ import Ember from 'ember';
 import layout from '../templates/components/select-for';
 import FormControl from './form-control';
 
+const {
+  get,
+  set,
+  assert,
+  computed,
+  A
+} = Ember;
+
 export default FormControl.extend({
   layout,
 
-  classNames: "select-field",
+  classNames: 'select-field',
+
+  hasBasicOptions: computed('options', function() {
+    return typeof get(A(get(this, 'options')), 'firstObject') !== 'object';
+  }),
+
+  valuePath: computed('hasBasicOptions', function() {
+    if (!get(this, 'hasBasicOptions')) {
+      return 'id';
+    }
+  }),
 
   didReceiveAttrs() {
     this._super(...arguments);
 
-    Ember.assert(
+    assert(
       `Must provide an options attribute when using \`${this.toString().match(/component:.[^`:]*/)}\``,
-      this.get("options")
+      get(this, 'options')
     );
 
-    if (this.get("hasBasicOptions")) {
-      this.selectedOption =
-        Ember.computed.readOnly(`data.${this.get("field")}`);
+    if (get(this, 'hasBasicOptions')) {
+      this.selectedOption = computed.readOnly(`data.${get(this, 'field')}`);
     } else {
-      const field     = this.get("field"),
-            valuePath = this.get("valuePath");
+      let field = get(this, 'field');
+      let valuePath = get(this, 'valuePath');
 
-      this.selectedOption = Ember.computed(`data.${field}`, "options", "field", function() {
-        return this.get("options").
-          findBy(valuePath, this.get(`data.${field}.${valuePath}`));
+      this.selectedOption = computed(`data.${field}`, 'options', 'field', function() {
+        return get(this, 'options')
+          .findBy(valuePath, get(this, `data.${field}.${valuePath}`));
       });
     }
   },
 
-  hasBasicOptions: Ember.computed("options", function() {
-    return typeof Ember.get(Ember.A(this.get("options")), "firstObject") !== "object";
-  }),
-
-  valuePath: Ember.computed("hasBasicOptions", function() {
-    if (!this.get("hasBasicOptions")) {
-      return "id";
-    }
-  }),
-
   updateSelected(value) {
-    if (this.get("hasBasicOptions")) {
-      Ember.set(this.get("data"), this.get("field"), value);
+    if (get(this, 'hasBasicOptions')) {
+      set(get(this, 'data'), get(this, 'field'), value);
     } else {
-      const selectedOption =
-        Ember.A(this.get("options")).
-        findBy(this.get("valuePath"), value);
+      let selectedOption = A(get(this, 'options'))
+                           .findBy(get(this, 'valuePath'), value);
 
-      Ember.set(this.get("data"), this.get("field"), selectedOption);
+      set(get(this, 'data'), get(this, 'field'), selectedOption);
     }
   }
 });

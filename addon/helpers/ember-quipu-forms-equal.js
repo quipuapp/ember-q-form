@@ -1,7 +1,9 @@
 import Ember from 'ember';
 
+const { Helper } = Ember;
+
 export function emberQuipuFormsEqual(params) {
   return params[0] === params[1];
 }
 
-export default Ember.Helper.helper(emberQuipuFormsEqual);
+export default Helper.helper(emberQuipuFormsEqual);

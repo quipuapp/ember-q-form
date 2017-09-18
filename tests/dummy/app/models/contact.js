@@ -1,19 +1,21 @@
-import DS from 'ember-data';
+import Model from 'ember-data/model';
+import attr from 'ember-data/attr';
+import { belongsTo, hasMany } from 'ember-data/relationships';
 import { validator, buildValidations } from 'ember-cp-validations';
 
 const Validations = buildValidations({
-  name: validator("presence", true),
+  name: validator('presence', true),
   email: [
-    validator("format", { type: "email" })
+    validator('format', { type: 'email' })
   ],
-  category: validator("presence", true),
+  category: validator('presence', true),
   addressess: validator('has-many')
 });
 
-export default DS.Model.extend(Validations, {
-  name:  DS.attr("string"),
-  email: DS.attr("string"),
+export default Model.extend(Validations, {
+  name: attr('string'),
+  email: attr('string'),
 
-  category:   DS.belongsTo("category", { inverse: null }),
-  addressess: DS.hasMany("address")
+  category: belongsTo('category', { inverse: null }),
+  addressess: hasMany('address')
 });

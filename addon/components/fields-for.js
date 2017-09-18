@@ -1,13 +1,15 @@
 import Ember from 'ember';
 import layout from '../templates/components/form-for';
 
-const FieldsFor = Ember.Component.extend({
+const { Component } = Ember;
+
+const FieldsFor = Component.extend({
   layout,
-  tagName: ""
+  tagName: ''
 });
 
 FieldsFor.reopenClass({
-  positionalParams: ["data"]
+  positionalParams: ['data']
 });
 
 export default FieldsFor;

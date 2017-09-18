@@ -2,7 +2,12 @@ import layout from '../templates/components/input-for';
 import FormControl from './form-control';
 import Ember from 'ember';
 
-const { isPresent, computed } = Ember;
+const {
+  get,
+  set,
+  isPresent,
+  computed
+} = Ember;
 
 export default FormControl.extend({
   layout,
@@ -12,22 +17,22 @@ export default FormControl.extend({
   init() {
     this._super(...arguments);
 
-    const field = this.get('field');
+    let field = get(this, 'field');
 
     this.hasValue = computed(`data.${field}`, 'placeholder', () => {
-      if (isPresent(this.get('placeholder'))) {
+      if (isPresent(get(this, 'placeholder'))) {
         return true;
       }
 
-      return isPresent(this.get(`data.${field}`));
+      return isPresent(get(this, `data.${field}`));
     });
   },
 
   didReceiveAttrs() {
     this._super(...arguments);
 
-    if (!this.get("type")) {
-      this.set("type", "text");
+    if (!get(this, 'type')) {
+      set(this, 'type', 'text');
     }
-  },
+  }
 });

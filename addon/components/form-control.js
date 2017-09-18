@@ -1,47 +1,48 @@
 import Ember from 'ember';
 
-const FormControl = Ember.Component.extend({
-  intl: Ember.inject.service(),
-  classNames: "form-field",
+const {
+  get,
+  set,
+  computed,
+  Component,
+  String,
+  inject: { service },
+  isEmpty
+} = Ember;
+
+const FormControl = Component.extend({
+  intl: service(),
+  classNames: 'form-field',
   classNameBindings: ['hasErrors:has-errors', 'focused'],
 
   showErrors: false,
 
-  focusIn() {
-    this.set('focused', true);
-  },
-
-  focusOut() {
-    this.set('focused', false);
-  },
-
-
-  inputId: Ember.computed("elementId", {
+  inputId: computed('elementId', {
     get() {
-      return `${this.get("elementId")}-input`;
+      return `${get(this, 'elementId')}-input`;
     }
   }),
 
-  label: Ember.computed("data", "field", {
+  label: computed('data', 'field', {
     get() {
-      let modelName =
-        this.get("data.content.constructor.modelName") ||
-        this.get("data.constructor.modelName");
+      let modelName
+        = get(this, 'data.content.constructor.modelName')
+          || get(this, 'data.constructor.modelName');
 
       if (!modelName) {
         return;
       }
 
-      let fieldName = this.get("field");
+      let fieldName = get(this, 'field');
 
       if (!fieldName) {
         return;
       }
 
-      modelName = Ember.String.underscore(modelName);
-      fieldName = Ember.String.underscore(fieldName);
+      modelName = String.underscore(modelName);
+      fieldName = String.underscore(fieldName);
 
-      return this.get("intl").t(
+      return get(this, 'intl').t(
         `models.attributes.${modelName}.${fieldName}`);
     }
   }),
@@ -49,20 +50,28 @@ const FormControl = Ember.Component.extend({
   init() {
     this._super(...arguments);
 
-    const errorsPath = `data.validations.attrs.${this.get('field')}.errors`;
+    let errorsPath = `data.validations.attrs.${get(this, 'field')}.errors`;
 
-    this.hasErrors = Ember.computed('showErrors', errorsPath, () => {
-      if (!this.get('showErrors')) {
+    this.hasErrors = computed('showErrors', errorsPath, () => {
+      if (!get(this, 'showErrors')) {
         return false;
       }
 
-      return !Ember.isEmpty(this.get(errorsPath));
+      return !isEmpty(get(this, errorsPath));
     });
+  },
+
+  focusIn() {
+    set(this, 'focused', true);
+  },
+
+  focusOut() {
+    set(this, 'focused', false);
   }
 });
 
 FormControl.reopenClass({
-  positionalParams: ["field"]
+  positionalParams: ['field']
 });
 
 export default FormControl;

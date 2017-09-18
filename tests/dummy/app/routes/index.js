@@ -1,29 +1,35 @@
 import Ember from 'ember';
 
-export default Ember.Route.extend({
+const {
+  get,
+  set,
+  Route
+} = Ember;
+
+export default Route.extend({
   model() {
-    const categories = [
-      this.store.createRecord("category", { id: "1", name: "Friends" }),
-      this.store.createRecord("category", { id: "2", name: "Family" }),
-      this.store.createRecord("category", { id: "3", name: "Work" })
+    let categories = [
+      this.store.createRecord('category', { id: '1', name: 'Friends' }),
+      this.store.createRecord('category', { id: '2', name: 'Family' }),
+      this.store.createRecord('category', { id: '3', name: 'Work' })
     ];
 
-    this.set("categories", categories);
+    set(this, 'categories', categories);
 
-    const contact = this.store.createRecord("contact", {
-      animal: "jirafa",
+    let contact = this.store.createRecord('contact', {
+      animal: 'jirafa',
       category: categories[2],
       receiveNewsletter: true
     });
 
-    const address = this.store.createRecord('address', {
+    let address = this.store.createRecord('address', {
       street: 'Tolra',
       zipCode: '08032',
       city: 'Barcelona',
       country: 'Meeeeec'
     });
 
-    contact.get('addressess').addObject(address);
+    get(contact, 'addressess').addObject(address);
 
     return contact;
   },
@@ -31,6 +37,6 @@ export default Ember.Route.extend({
   setupController(controller) {
     this._super(...arguments);
 
-    controller.set("categories", this.get("categories"));
+    set(controller, 'categories', get(this, 'categories'));
   }
 });

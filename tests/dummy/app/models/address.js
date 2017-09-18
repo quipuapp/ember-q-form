@@ -1,11 +1,13 @@
-import DS from 'ember-data';
+import Model from 'ember-data/model';
+import attr from 'ember-data/attr';
+import { belongsTo } from 'ember-data/relationships';
 import Validations from 'dummy/validations/contact-form-address-validations';
 
-export default DS.Model.extend(Validations, {
-  street:  DS.attr("string"),
-  zipCode: DS.attr("string"),
-  city:    DS.attr("string"),
-  country: DS.attr("string"),
+export default Model.extend(Validations, {
+  street: attr('string'),
+  zipCode: attr('string'),
+  city: attr('string'),
+  country: attr('string'),
 
-  contact: DS.belongsTo("contact")
+  contact: belongsTo('contact')
 });

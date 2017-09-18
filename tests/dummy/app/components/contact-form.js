@@ -1,24 +1,32 @@
 import Ember from 'ember';
 
-export default Ember.Component.extend({
-  store: Ember.inject.service(),
+const {
+  get,
+  set,
+  Component,
+  inject: { service }
+} = Ember;
 
-  selectOptions: ["perro", "gato", "jirafa", "caballo"],
+export default Component.extend({
+  store: service(),
+
+  selectOptions: null,
 
   init() {
     this._super(...arguments);
 
-    this.set('addressess', this.get('model.addressess').toArray());
+    set(this, 'selectOptions', ['perro', 'gato', 'jirafa', 'caballo']);
+    set(this, 'addressess', get(this, 'model.addressess').toArray());
   },
 
   save() {
   },
 
   cancel() {
-    this.set('model.addressess', this.get('addressess'));
+    set(this, 'model.addressess', get(this, 'addressess'));
   },
 
   removeAddress(address) {
-    this.get('model.addressess').removeObject(address);
+    get(this, 'model.addressess').removeObject(address);
   }
 });
